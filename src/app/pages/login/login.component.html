@@ -1,26 +1,97 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="login()">
-    <div>
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        [(ngModel)]="email"
-        name="email"
-        required
-      />
+<mat-tab-group [selectedIndex]="activeIndex">
+  <mat-tab>
+    <div class="row">
+
+      <div class="col d-flex justify-content-center align-items-center">
+        <div class="login-container">
+
+          <h2 (click)="goToLogin()"><i class="pi pi-arrow-left" style="font-size: 2rem"></i> Create an account</h2>
+
+          <form (ngSubmit)="login()">
+            <div class="col d-grid justify-content-center">
+              <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2">
+               <p-floatLabel>
+                  <p-iconField class="w-100" iconPosition="left">
+                    <p-inputIcon styleClass="pi pi-user" />
+                    <input class="w-100" pInputText id="fullName" [(ngModel)]="fullName" />
+                  </p-iconField>
+                  <label class="float-label" for="fullName">Full Name</label>
+                </p-floatLabel>
+              </div>
+
+              <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2"></div>
+                <p-floatLabel>
+                   <p-iconField class="w-100" iconPosition="left">
+                     <p-inputIcon styleClass="pi pi-user" />
+                     <input class="w-100" pInputText id="newEmail" [(ngModel)]="newEmail" />
+                   </p-iconField>
+                   <label class="float-label" for="newEmail">email</label>
+                 </p-floatLabel>
+               </div>
+
+              
+
+              <div class="row d-flex justify-content-center mt-4">
+                <button type="submit" class="password-button">Login</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+      <div class="col sidePanel"></div>
     </div>
-    <div>
-      <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        [(ngModel)]="password"
-        name="password"
-        required
-      />
+
+
+
+  </mat-tab>
+
+  <mat-tab>
+    <div class="row">
+      <div class="col sidePanel"></div>
+      <div class="col d-flex justify-content-center align-items-center">
+        <div class="login-container">
+          <h2>Log in to your account</h2>
+          <h6>Login using your email & password</h6>
+          <form (ngSubmit)="login()">
+            <div class="col d-grid justify-content-center">
+              <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2">
+                <label for="username">Username</label>
+                <p-iconField class="w-100" iconPosition="left">
+                  <p-inputIcon styleClass="pi pi-user" />
+                  <input class="w-100" pInputText id="username" name="username" aria-describedby="username-help"
+                    [(ngModel)]="email" />
+                </p-iconField>
+              </div>
+              <div class="row d-flex flex-column gap-2 mt-2 mb-2">
+                <label for="password">Password</label>
+                <p-iconField iconPosition="left">
+                  <p-inputIcon styleClass="pi pi-lock" />
+                  <input pInputText type="password" id="password" name="password" aria-describedby="password"
+                    [(ngModel)]="email" />
+                </p-iconField>
+              </div>
+              <div class="row d-flex justify-content-center mt-4">
+                <button type="submit" class="password-button">Login</button>
+              </div>
+            </div>
+          </form>
+          <div class="row d-flex justify-content-center align-items-center mt-4">
+            <h6 align="center" (click)="goToSignIn()">Not a member yet? SIGN UP</h6>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <button type="submit">Login</button>
-  </form>
-</div>
+
+
+  </mat-tab>
+
+
+</mat-tab-group>
+
+
+<!-- Copyright 2024 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->

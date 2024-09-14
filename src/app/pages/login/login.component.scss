@@ -1,0 +1,59 @@
+@import '../../../styles.scss'; 
+
+.sidePanel {
+    background-color: $accent-color;
+    height: 97.6vh;
+
+
+}
+
+.password-button{
+    background-color: $accent-color;
+    color: white;
+    width: 90%;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+}
+
+::ng-deep .mat-mdc-tab-header{
+    display: none !important;
+}
+
+::ng-deep .p-tabview-panels{
+    margin: 0 !important;
+    padding:0 !important;
+}
+
+/* Animation for tab transition */
+::ng-deep .tab-content {
+    transition: transform 0.5s ease-in-out;
+}
+
+::ng-deep .tab-enter {
+    transform: translateX(100%);
+}
+
+::ng-deep .tab-enter-active {
+    transform: translateX(0);
+}
+
+::ng-deep .tab-leave {
+    transform: translateX(0);
+}
+
+::ng-deep .tab-leave-active {
+    transform: translateX(-100%);
+}
+
+.example-input-label,
+.example-add-tab-button,
+.example-delete-tab-button {
+  margin: 8px;
+}
+
+
+.float-label{
+    margin-left: 4vh;
+
+}

@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,13 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  newEmail: string = '';
+  newPassword: string = '';
+  confirmNewPassword: string = '';
+  fullName: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
-
+  constructor(private authService: AuthService, private router: Router) { }
+  activeIndex: number = 1;
   login() {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
@@ -24,5 +29,44 @@ export class LoginComponent {
         console.error('Login failed', error);
       },
     });
+  }
+  signUp() { }
+
+  goToSignIn() {
+    // Navigate to the sign-in page or perform any other action
+    this.activeIndex = 0
+  }
+  goToLogin() {
+    this.activeIndex = 1;
+  }
+
+  onTabChange(event: any) {
+    const tabContent = document.querySelector('.p-tabview-panels');
+    if (tabContent) {
+      tabContent.classList.add('tab-leave');
+      setTimeout(() => {
+        this.activeIndex = event.index;
+        tabContent.classList.remove('tab-leave');
+        tabContent.classList.add('tab-enter');
+        setTimeout(() => {
+          tabContent.classList.remove('tab-enter');
+        }, 500);
+      }, 500);
+    }
+  }
+  tabs = ['First', 'Second', 'Third'];
+  selected = new FormControl(0);
+
+  addTab(selectAfterAdding: boolean) {
+    this.tabs.push('New');
+
+    if (selectAfterAdding) {
+      this.selected.setValue(this.tabs.length - 1);
+    }
+  }
+
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+    this.selected.setValue(index);
   }
 }
