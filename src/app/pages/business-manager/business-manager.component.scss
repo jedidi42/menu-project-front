@@ -1,0 +1,19 @@
+.border-dashed {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .p-button-warning {
+    background-color: #D35400;
+    border-color: #D35400;
+  }
+  
+  .p-button-warning:hover {
+    background-color: #A04000;
+    border-color: #A04000;
+  }
+  

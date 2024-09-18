@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,10 @@ export class LoginComponent {
   newEmail: string = '';
   newPassword: string = '';
   confirmNewPassword: string = '';
-  fullName: string = '';
+  lastName: string = '';
+  firstName: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService,private userService:UserService ,private router: Router) { }
   activeIndex: number = 1;
   login() {
     this.authService.login(this.email, this.password).subscribe({
@@ -30,7 +32,16 @@ export class LoginComponent {
       },
     });
   }
-  signUp() { }
+  signUp() {
+    this.userService.createUser({firstName:this.firstName, lastName:this.lastName,email:this.newEmail,password:this.newPassword}).subscribe({
+      next: (response:any) => {
+        console.log('user created successfully',response);
+      },
+      error: (error:any) => {
+        console.error('user creation failed ', error);
+      },
+    });
+  }
 
   goToSignIn() {
     // Navigate to the sign-in page or perform any other action

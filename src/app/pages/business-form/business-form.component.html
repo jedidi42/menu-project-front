@@ -1,0 +1,87 @@
+<div class="container mt-5">
+    <form [formGroup]="businessForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="font-weight-bold">Create new Business</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Left Side: Form Inputs -->
+            <div class="col-md-6">
+                <!-- Business Name Input -->
+                <div class="form-group mb-4">
+                    <label for="businessName">Business name</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-bookmark"></i>
+                        </span>
+                        <input pInputText id="businessName" placeholder="Business name" formControlName="businessName"
+                            class="form-control" />
+                    </div>
+                    <div *ngIf="businessForm.get('businessName')?.invalid && businessForm.get('businessName')?.touched"
+                        class="text-danger mt-1">
+                        Business name is required
+                    </div>
+                </div>
+
+                <!-- Business Address Input -->
+                <div class="form-group mb-4">
+                    <label for="businessAddress">Business address</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-map-marker"></i>
+                        </span>
+                        <input pInputText id="businessAddress" placeholder="Business address"
+                            formControlName="businessAddress" class="form-control" />
+                    </div>
+                    <div *ngIf="businessForm.get('businessAddress')?.invalid && businessForm.get('businessAddress')?.touched"
+                        class="text-danger mt-1">
+                        Business address is required
+                    </div>
+                </div>
+
+                <!-- Business Categories Dropdown -->
+                <div class="form-group mb-4">
+                    <label for="businessCategories">Business categories</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-tags"></i>
+                        </span>
+                        <p-dropdown [options]="categories" placeholder="Select a category"
+                            formControlName="businessCategory" class="form-control"></p-dropdown>
+                    </div>
+                    <div *ngIf="businessForm.get('businessCategory')?.invalid && businessForm.get('businessCategory')?.touched"
+                        class="text-danger mt-1">
+                        Category is required
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Image Upload -->
+            <div class="col-md-6 mt-3">
+                <div class="upload-box text-center d-flex align-items-center justify-content-center"
+                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"
+                    [ngClass]="{ 'drag-over': isDragOver }">
+                    <i (click)="fileInput.click()" class="pi pi-plus-circle upload-icon" *ngIf="!imagePreview"></i>
+                    <p class="upload-text" *ngIf="!imagePreview">Upload a cover photo of your business</p>
+                    <small *ngIf="!imagePreview">1400px x 900px</small>
+                    <img *ngIf="imagePreview" [src]="imagePreview" alt="Uploaded Image Preview" class="img-fluid"
+                        style="max-width: 100%; max-height: 250px;" />
+                    <input type="file" (change)="onFileSelected($event)" hidden #fileInput>
+                </div>
+                
+            
+        </div>
+</div>
+
+<!-- Submit Button -->
+<div class="row mt-5">
+    <div class="col-md-12 text-center">
+        <button pButton type="submit" label="CREATE BUSINESS" class="p-button-raised p-button-warning create-bsns-btn"
+            [disabled]="businessForm.invalid"></button>
+        <p class="mt-2">You can manage your business’ menus and managers later</p>
+    </div>
+</div>
+</form>
+</div>

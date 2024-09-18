@@ -7,32 +7,62 @@
 
           <h2 (click)="goToLogin()"><i class="pi pi-arrow-left" style="font-size: 2rem"></i> Create an account</h2>
 
-          <form (ngSubmit)="login()">
+          <form (ngSubmit)="signUp()">
             <div class="col d-grid justify-content-center">
               <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2">
-               <p-floatLabel>
+                <p-floatLabel>
                   <p-iconField class="w-100" iconPosition="left">
                     <p-inputIcon styleClass="pi pi-user" />
-                    <input class="w-100" pInputText id="fullName" [(ngModel)]="fullName" />
+                    <input class="w-100" pInputText id="firstName" [(ngModel)]="firstName"  name="firstName"/>
                   </p-iconField>
-                  <label class="float-label" for="fullName">Full Name</label>
+                  <label *ngIf="firstName==''" class="float-label" for="firstName">First Name</label>
+                </p-floatLabel>
+              </div>
+              
+              <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2">
+                <p-floatLabel>
+                  <p-iconField class="w-100" iconPosition="left">
+                    <p-inputIcon styleClass="pi pi-user" />
+                    <input class="w-100" pInputText id="lastName" [(ngModel)]="lastName" name="lastName" />
+                  </p-iconField>
+                  <label *ngIf="lastName==''" class="float-label" for="lastName">Last Name</label>
                 </p-floatLabel>
               </div>
 
-              <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2"></div>
-                <p-floatLabel>
-                   <p-iconField class="w-100" iconPosition="left">
-                     <p-inputIcon styleClass="pi pi-user" />
-                     <input class="w-100" pInputText id="newEmail" [(ngModel)]="newEmail" />
-                   </p-iconField>
-                   <label class="float-label" for="newEmail">email</label>
-                 </p-floatLabel>
-               </div>
 
-              
+              <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2">
+                <p-floatLabel>
+                  <p-iconField class="w-100" iconPosition="left">
+                    <p-inputIcon styleClass="pi pi-user" />
+                    <input class="w-100" pInputText id="newEmail" [(ngModel)]="newEmail" name="newEmail" />
+                  </p-iconField>
+                  <label *ngIf="newEmail==''" class="float-label" for="newEmail">email</label>
+                </p-floatLabel>
+              </div>
+
+              <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2">
+                <p-floatLabel>
+                  <p-iconField class="w-100" iconPosition="left">
+                    <p-inputIcon styleClass="pi pi-user" />
+                    <input class="w-100" pInputText id="newPassword" [(ngModel)]="newPassword" name="newPassword" />
+                  </p-iconField>
+                  <label *ngIf="newPassword==''" class="float-label" for="newPassword">Password</label>
+                </p-floatLabel>
+              </div>
+
+              <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2  justify-content-center">
+                <p-floatLabel>
+                  <p-iconField class="w-100" iconPosition="left">
+                    <p-inputIcon styleClass="pi pi-user" />
+                    <input class="w-100" pInputText id="confirmNewPassword" [(ngModel)]="confirmNewPassword" name="confirmNewPassword" />
+                  </p-iconField>
+                  <label *ngIf="confirmNewPassword==''" class="float-label" for="confirmNewPassword">Confirm Password</label>
+                </p-floatLabel>
+              </div>
+
 
               <div class="row d-flex justify-content-center mt-4">
-                <button type="submit" class="password-button">Login</button>
+                <button type="submit" class="password-button">Continue</button>
               </div>
             </div>
           </form>
@@ -57,10 +87,10 @@
           <form (ngSubmit)="login()">
             <div class="col d-grid justify-content-center">
               <div class="w-80 row d-flex flex-column gap-2 mt-2 mb-2">
-                <label for="username">Username</label>
+                <label for="email">Email</label>
                 <p-iconField class="w-100" iconPosition="left">
                   <p-inputIcon styleClass="pi pi-user" />
-                  <input class="w-100" pInputText id="username" name="username" aria-describedby="username-help"
+                  <input class="w-100" pInputText id="email" name="email" aria-describedby="email-help"
                     [(ngModel)]="email" />
                 </p-iconField>
               </div>
@@ -69,7 +99,7 @@
                 <p-iconField iconPosition="left">
                   <p-inputIcon styleClass="pi pi-lock" />
                   <input pInputText type="password" id="password" name="password" aria-describedby="password"
-                    [(ngModel)]="email" />
+                    [(ngModel)]="password" />
                 </p-iconField>
               </div>
               <div class="row d-flex justify-content-center mt-4">

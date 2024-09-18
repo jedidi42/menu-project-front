@@ -21,19 +21,25 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { MenubarModule } from 'primeng/menubar';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DropdownModule } from 'primeng/dropdown';
 
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BusinessManagerComponent } from './pages/business-manager/business-manager.component';
+import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
+import { BusinessFormComponent } from './pages/business-form/business-form.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, BusinessManagerComponent, NavBarComponent, BusinessFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -46,6 +52,7 @@ export function tokenGetter() {
         disallowedRoutes: ['http://localhost:3000/api/auth/login'],
       },
     }),
+    ReactiveFormsModule,
     DividerModule,
     ButtonModule,
     InputTextModule,
@@ -56,11 +63,13 @@ export function tokenGetter() {
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatTabsModule,
-    FloatLabelModule
+    FloatLabelModule,
+    MenubarModule,
+    OverlayPanelModule,
+    DropdownModule
   ],
   providers: [provideHttpClient(withInterceptorsFromDi()), provideAnimationsAsync()],
   bootstrap: [AppComponent],

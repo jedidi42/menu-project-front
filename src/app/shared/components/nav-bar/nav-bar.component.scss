@@ -1,0 +1,19 @@
+@import '../../../../styles.scss';
+
+.navbar {
+    padding: 1rem 1.5rem;
+    background-color: $accent-color;
+
+    .pi {
+        color: white !important;
+    }
+
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.btn {
+    margin-left: 1rem;
+}

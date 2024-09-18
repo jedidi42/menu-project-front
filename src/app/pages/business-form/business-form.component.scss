@@ -1,0 +1,50 @@
+.upload-box {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.upload-box.drag-over {
+    background-color: rgba(211, 84, 0, 0.1);
+    border-color: #D35400;
+}
+
+.upload-icon {
+    font-size: 2rem;
+    color: #D35400;
+}
+
+.upload-text {
+    margin-top: 10px;
+}
+
+.text-danger {
+    font-size: 0.9rem;
+    color: #e74c3c;
+}
+
+.p-button-warning {
+    background-color: #D35400;
+    border-color: #D35400;
+}
+
+.p-button-warning:hover {
+    background-color: #A04000;
+    border-color: #A04000;
+}
+
+::ng-deep .p-dropdown{
+    width: 100% !important;
+  }
+
+.create-bsns-btn {
+    width: 40% ;
+    border-radius: 4px;
+}
