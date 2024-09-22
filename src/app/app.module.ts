@@ -33,13 +33,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BusinessManagerComponent } from './pages/business-manager/business-manager.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { BusinessFormComponent } from './pages/business-form/business-form.component';
+import { MenuManagerComponent } from './pages/menu-manager/menu-manager.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, BusinessManagerComponent, NavBarComponent, BusinessFormComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, BusinessManagerComponent, NavBarComponent, BusinessFormComponent, MenuManagerComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

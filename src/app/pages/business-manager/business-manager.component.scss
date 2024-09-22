@@ -1,19 +1,70 @@
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100% !important;
+}
+
+.card-img-top {
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-footer {
+  background-color: #fff;
+  border-top: none;
+}
+
 .border-dashed {
-    border: 2px dashed #ccc;
-    border-radius: 8px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .p-button-warning {
-    background-color: #D35400;
-    border-color: #D35400;
-  }
-  
-  .p-button-warning:hover {
-    background-color: #A04000;
-    border-color: #A04000;
-  }
-  
+  border: 2px dashed #ccc;
+  min-height: 250px;
+}
+
+.card-footer .btn {
+  border: none;
+}
+
+.card-footer .btn-light {
+  padding: 5px 10px;
+}
+
+.fa-plus-circle {
+  color: #ccc;
+}
+
+.card.h-100 {
+  height: 100%;
+}
+
+/* For the card size and positioning */
+.custom-card {
+  width: 18rem;
+  min-height: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* For the background image and general layout of the card content */
+.custom-card-img-overlay {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+/* Styling for the footer section at the bottom of the card */
+.custom-card-footer {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.businees-name{
+  margin-right: 50%;
+}
+
+.clickable{
+  cursor: pointer;
+}

@@ -1,5 +1,5 @@
 // src/app/pages/home/home.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,8 +8,11 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit(): void {
+  //  this.router.navigate(['/business-manager']);
+  }
   businesses = [
     {
       name: 'Tanit',
@@ -30,7 +33,7 @@ export class HomeComponent {
     target.src = 'assets/images/image_not_available.png';
   }
   navigateToBusinessForm() {
-    this.router.navigate(['/business-form']);
+   // this.router.navigate(['/business-form']);
   }
 
 }

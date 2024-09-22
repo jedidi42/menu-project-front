@@ -1,38 +1,9 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12">
-      <h2>Business manager <i pTooltip="ma3loumet" 
-        tooltipPosition="right"  class="pi pi-question-circle"></i></h2>
-    </div>
-  </div>
+<app-nav-bar></app-nav-bar>
 
-  <div class="row">
-    <!-- Loop through dynamic cards -->
-    <div class="col-sm-12 col-md-4 mb-3" *ngFor="let business of businesses">
-      <div class="card bg-dark text-white custom-card">
-        <div class="card-img-overlay d-flex flex-column justify-content-between p-2 custom-card-img-overlay"
-        [ngStyle]="{'background-image': 'url(' + (business.image ? business.image : 'https://artsmidnorthcoast.com/wp-content/uploads/2014/05/no-image-available-icon-6.png') + ')'}">
-          
-          <!-- This part is pinned to the bottom -->
-          <div class="d-flex justify-content-between align-items-center mt-auto custom-card-footer">
-            <div class="businees-name">{{ business.name }}</div>
-            <span><i class="pi pi-book"></i> {{ business.menus }}</span>
-            <div>
-              <i class="pi pi-pen-to-square"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-  </div>
+<router-outlet></router-outlet>
 
-  <!-- Static "Add" card -->
-  <div class="col-sm-12 col-md-4 mb-3">
-    <div class="card h-100 border-dashed">
-      <div class="d-flex align-items-center justify-content-center h-100">
-        <i class="pi pi-plus-circle clickable " (click)="navigateToBusinessForm()" style="font-size: 5rem"></i>
-      </div>
-    </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">© 2023 Your Company. All rights reserved.</p>
   </div>
-</div>
-</div>
+</footer>
