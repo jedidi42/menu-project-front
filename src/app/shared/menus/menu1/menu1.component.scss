@@ -1,0 +1,56 @@
+.menu-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-header {
+  margin-bottom: 20px;
+}
+
+.menu-header-image {
+  width: 100%;
+  height: 100px;  /* Set height to 100px */
+  object-fit: cover;  /* Ensure the image covers the container without distorting */
+  border-radius: 8px 8px 0 0; /* Round the top edges */
+}
+
+.menu-item-card {
+  margin-bottom: 20px;
+  background-color: #ffffff;  /* Remove black background */
+  border: 1px solid #e0e0e0;  /* Add a light border for separation */
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-item-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.menu-item-image img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.mat-tab-label {
+  color: black !important;  /* Make the tab labels black */
+}
+
+.mat-tab-group {
+  margin-top: 20px;
+}
+
+.mat-card-subtitle {
+  font-size: 14px;
+  color: #666;
+}

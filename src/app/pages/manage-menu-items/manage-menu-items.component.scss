@@ -1,0 +1,21 @@
+@import '../../../styles.scss';
+
+@media only screen and (max-width: 768px) {
+    .add-category-form input,
+    .add-category-form button {
+      width: 100% !important;
+      margin-bottom: 0.5em;
+    }
+  
+    .p-button {
+      width: 100% !important;
+      background-color: $accent-color !important;
+    }
+  }
+  
+  .p-button {
+    background-color: $accent-color !important;
+  }
+  .pi {
+    color: white;
+}

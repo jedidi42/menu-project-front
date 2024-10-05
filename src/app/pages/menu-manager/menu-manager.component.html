@@ -1,92 +1,240 @@
 <div class="container mt-5 mb-5">
-    <div class="row">
-      <!-- Available Menus Sidebar -->
-      <div class="col-md-3">
+  <div class="row">
+    <!-- Available Menus Sidebar -->
+    <div class="col-md-3">
+      <div class="card p-3">
         <h4>Mesk lil</h4>
         <p class="text-muted">Create and manage menus</p>
         <div class="menu-sidebar p-3">
           <div class="available-menus mb-3">
-            <small>2 free menus available in your current plan</small> 
+            <small>2 free menus available in your current plan</small>
             <span class="text-danger">upgrade plan</span>
           </div>
-  
+
           <!-- Active Menu -->
-          <div class="card mb-3 active-menu p-2">
-            <h6 class="mb-0">Menu 001</h6>
-            <p class="mb-0 text-muted">menu description</p>
+          <div
+            class="card mb-3 active-menu p-2"
+            *ngFor="let menu of BusinesseMenus"
+            (click)="SelectMenu(menu)"
+          >
+            <h6 class="mb-0">{{ menu.name }}</h6>
+            <p class="mb-0 text-muted">{{ menu.description }}</p>
           </div>
-  
+
           <!-- Add New Menu -->
           <div class="text-center mt-4">
-            <button class="btn btn-outline-secondary rounded-circle p-3">
-              <i class="pi pi-plus" style="font-size: 1.5rem;"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Menu Details Section -->
-      <div class="col-md-5">
-        <div class="card p-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Menu 001</h5>
-            <div class="d-flex align-items-center">
-              <button class="btn btn-link p-0"><i class="pi pi-pencil"></i></button>
-              <p-button icon="pi pi-ellipsis-h" styleClass="p-button-text p-ml-2"></p-button>
+            <div class="d-flex align-items-center justify-content-center h-100">
+              <i
+                (click)="CreateMenu()"
+                class="pi pi-plus-circle clickable"
+                style="font-size: 3rem"
+              ></i>
             </div>
           </div>
-  
-          <p>This is a test description bla bla bla</p>
-  
-          <!-- Categories -->
-          <h6>Categories <i class="pi pi-pencil"></i></h6>
-          <p>Pizzas, Sandwiches, Tacos, Beverages</p>
-  
-          <!-- Items Count -->
-          <h6>Items</h6>
-          <p>You have a total of 48 items that can be served in this menu</p>
-  
-          <!-- Export Menu -->
-          <h6>Export menu</h6>
-          <ul class="list-unstyled">
-            <li><a href="#">Export Menu as a PDF</a></li>
-            <li><a href="#">Export Menu as a QR code</a></li>
-          </ul>
-  
-          <!-- Delete Menu -->
-          <button pButton label="Delete menu" icon="pi pi-trash" class="p-button-danger p-mt-3"></button>
-        </div>
-      </div>
-  
-      <!-- Served Items Section -->
-      <div class="col-md-4">
-        <div class="card p-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Served items (48 items)</h5>
-            <button class="btn btn-link p-0"><i class="pi pi-pencil"></i></button>
-          </div>
-  
-          <!-- Served Items List -->
-          <h6>Pizzas</h6>
-          <ul class="list-unstyled">
-            <li>Neptune</li>
-            <li>Merzebba</li>
-            <li>Pizza tiz</li>
-          </ul>
-  
-          <h6>Sandwiches</h6>
-          <ul class="list-unstyled">
-            <li>Alpha</li>
-            <li>Beta</li>
-            <li>Gamma</li>
-          </ul>
-  
-          <h6>Beverages</h6>
-          <ul class="list-unstyled">
-            <li>Celtia</li>
-          </ul>
         </div>
       </div>
     </div>
+
+    <!-- Menu Details Section -->
+    <div class="col-md-5">
+      <div class="card p-3">
+        <!--Menu preview-->
+        <div class="menu-prev mb-3" *ngIf="selectedMenu == null">
+          choose a menu to work on
+        </div>
+        <div class="menu-prev mb-3" *ngIf="selectedMenu">
+          <div class="iframe-wrapper">
+            <iframe
+              src="http://localhost:4200/menu1?menuId=37"
+              frameborder="0"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Export Menu -->
+        <h6>Export menu</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">Export Menu as a PDF</a></li>
+          <li><a href="#">Export Menu as a QR code</a></li>
+        </ul>
+
+        <!-- Delete Menu -->
+        <button
+          (click)="deleteMenu(selectedMenuId)"
+          pButton
+          label="Delete menu"
+          icon="pi pi-trash"
+          class="p-button-danger p-mt-3"
+        ></button>
+      </div>
+    </div>
+
+    <!-- Editor section -->
+    <div class="col-md-4">
+      <div class="card p-4">
+        <h4>Editor</h4>
+        <p class="text-muted">modify your menu</p>
+        <form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+          <!-- Menu Name -->
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Menu Name</label>
+            <input
+              pInputText
+              id="name"
+              formControlName="name"
+              placeholder="Enter menu name"
+              class="form-control"
+            />
+            <div
+              *ngIf="
+                menuForm.get('name')?.invalid && menuForm.get('name')?.touched
+              "
+              class="text-danger mt-1"
+            >
+              Menu name is required
+            </div>
+          </div>
+
+          <p-panel header="Content" [toggleable]="true">
+            <div class="form-group mb-3">
+              <label for="font" class="form-label">Categories</label>
+              <p-chips formControlName="categories" />
+            </div>
+            <!-- Category Dropdown 
+          <div class="form-group mb-3">
+            <label for="category" class="form-label">Category</label>
+            <p-dropdown
+              [options]="categories"
+              formControlName="category"
+              placeholder="Select Category"
+              class="form-control"
+            ></p-dropdown>
+            <div
+              *ngIf="
+                menuForm.get('category')?.invalid &&
+                menuForm.get('category')?.touched
+              "
+              class="text-danger mt-1"
+            >
+              Category is required
+            </div>
+          </div>-->
+            <p-button (onClick)="showDialog()" label="Show" />
+          </p-panel>
+
+          <p-panel header="Custom" [toggleable]="true">
+            <!-- Font Dropdown -->
+            <div class="form-group mb-3">
+              <label for="font" class="form-label">Font</label>
+              <p-dropdown
+                [options]="fonts"
+                formControlName="font"
+                placeholder="Select Font"
+                optionLabel="label"
+                class="form-control"
+              ></p-dropdown>
+              <div
+                *ngIf="
+                  menuForm.get('font')?.invalid && menuForm.get('font')?.touched
+                "
+                class="text-danger mt-1"
+              >
+                Font is required
+              </div>
+            </div>
+
+            <!-- Template Selection 
+          <div class="form-group mb-3">
+            <label for="template" class="form-label">Template</label>
+            <p-dropdown
+              [options]="templates"
+              formControlName="template"
+              placeholder="Select Template"
+              class="form-control"
+            ></p-dropdown>
+            <div
+              *ngIf="
+                menuForm.get('template')?.invalid &&
+                menuForm.get('template')?.touched
+              "
+              class="text-danger mt-1"
+            >
+              Template is required
+            </div>
+          </div>-->
+
+            <!-- Primary Color Picker -->
+            <div class="form-group mb-3">
+              <label for="primaryColor" class="form-label">Primary Color</label>
+              <div class="row d-flex">
+                <p-colorPicker
+                  class="col-3"
+                  formControlName="primaryColor"
+                  [style]="{ width: '100%' }"
+                ></p-colorPicker
+                ><span class="col">{{
+                  menuForm.get("primaryColor")?.value
+                }}</span>
+              </div>
+              <div
+                *ngIf="
+                  menuForm.get('primaryColor')?.invalid &&
+                  menuForm.get('primaryColor')?.touched
+                "
+                class="text-danger mt-1"
+              >
+                Primary color is required
+              </div>
+            </div>
+
+            <!-- Accent Color Picker -->
+            <div class="form-group mb-3">
+              <label for="accentColor" class="form-label">Accent Color</label>
+              <div class="row d-flex">
+                <p-colorPicker
+                  class="col-3"
+                  formControlName="accentColor"
+                  [style]="{ width: '100%' }"
+                ></p-colorPicker
+                ><span class="col">{{
+                  menuForm.get("accentColor")?.value
+                }}</span>
+              </div>
+              <div
+                *ngIf="
+                  menuForm.get('accentColor')?.invalid &&
+                  menuForm.get('accentColor')?.touched
+                "
+                class="text-danger mt-1"
+              >
+                Accent color is required
+              </div>
+            </div>
+          </p-panel>
+          <!-- Submit Button -->
+          <div class="text-center mt-4">
+            <button
+              pButton
+              label="Save Changes"
+              class="p-button create-mn-btn p-button-raised p-button-rounded w-100"
+              type="submit"
+              [disabled]="menuForm.invalid"
+            ></button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  
+</div>
+
+<p-dialog
+  header="Header"
+  [modal]="true"
+  [(visible)]="visible"
+  [maximizable]="true"
+>
+  <app-manage-menu-items
+    [categories]="selectedMenu?.content?.categories"
+    (finalObjectSubmitted)="handleFinalObject($event)"
+  ></app-manage-menu-items>
+</p-dialog>
