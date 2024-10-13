@@ -13,9 +13,10 @@
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 20%">Category</th>
-        <th style="width: 25%">Item Name</th>
-        <th style="width: 30%">Description</th>
-        <th style="width: 15%">Price</th>
+        <th style="width: 20%">Item Name</th>
+        <th style="width: 20%">Description</th>
+        <th style="width: 10%">Price</th>
+        <th style="width: 10%">Image</th>
         <th style="width: 5%">Edit</th>
         <th style="width: 5%">Delete</th>
       </tr>
@@ -24,8 +25,20 @@
     <!-- Row group header for categories -->
     <ng-template pTemplate="groupheader" let-category>
       <tr pRowGroupHeader>
-        <td colspan="6" class="font-bold">
+        <td colspan="7" class="font-bold">
           {{ category.name }}
+          <input
+            type="file"
+            (change)="onCategoryFileSelected($event, category)"
+            style="width: 100%"
+          />
+          <div *ngIf="category.imageUrl">
+            <img
+              [src]="category.imageUrl"
+              alt="Category Image"
+              style="width: 100px; height: auto"
+            />
+          </div>
         </td>
       </tr>
     </ng-template>
@@ -63,6 +76,7 @@
               style="width: 100%"
             />
           </td>
+          <td></td>
           <td>
             <button
               pButton
@@ -88,7 +102,7 @@
 
       <!-- Button to add a new item to the specific category -->
       <tr>
-        <td colspan="6">
+        <td colspan="7">
           <button
             pButton
             type="button"

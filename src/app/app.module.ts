@@ -43,6 +43,7 @@ import { Menu1Component } from "./shared/menus/menu1/menu1.component";
 import { PanelModule } from "primeng/panel";
 import { ChipsModule } from "primeng/chips";
 import { ManageMenuItemsComponent } from "./pages/manage-menu-items/manage-menu-items.component";
+import { Menu2Component } from './shared/menus/menu2/menu2.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -59,6 +60,7 @@ export function tokenGetter() {
     MenuManagerComponent,
     Menu1Component,
     ManageMenuItemsComponent,
+    Menu2Component,
   ],
   imports: [
     BrowserModule,

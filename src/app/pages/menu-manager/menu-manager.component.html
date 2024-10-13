@@ -44,10 +44,7 @@
         </div>
         <div class="menu-prev mb-3" *ngIf="selectedMenu">
           <div class="iframe-wrapper">
-            <iframe
-              src="http://localhost:4200/menu1?menuId=37"
-              frameborder="0"
-            ></iframe>
+            <iframe [src]="iFrameUrl" frameborder="0"></iframe>
           </div>
         </div>
 
@@ -55,6 +52,14 @@
         <h6>Export menu</h6>
         <ul class="list-unstyled">
           <li><a href="#">Export Menu as a PDF</a></li>
+          <button (click)="generateQrCode()">Generate QR Code</button>
+          <div>
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?data=http://localhost:4200/menu1?menuId=37&amp;size=100x100"
+              alt=""
+              title=""
+            />
+          </div>
           <li><a href="#">Export Menu as a QR code</a></li>
         </ul>
 

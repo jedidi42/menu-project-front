@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { MenuService } from "../../services/menu.service";
 import { ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { QrCodeService } from "../../services/qrcode.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-menu-manager",
@@ -21,6 +23,7 @@ export class MenuManagerComponent {
     { label: "Arial", value: "1" },
     { label: "Roboto", value: "2" },
     { label: "Sans-serif", value: "3" },
+    { label: "'Qwitcher Grypen', cursive", value: "4" },
   ];
 
   templates = [
@@ -32,12 +35,14 @@ export class MenuManagerComponent {
   selectedMenu: any;
   categoriList: any;
   categorieList: any = [];
-  iFrameUrl: string = "";
-
+  qrCodeImage: string = "";
+  iFrameUrl: any;
   constructor(
     private route: ActivatedRoute,
     private menuService: MenuService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private qrCodeService: QrCodeService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -128,8 +133,9 @@ export class MenuManagerComponent {
 
     if (this.selectedMenuId) {
       this.getMenuById(this.selectedMenuId);
-      this.iFrameUrl = `http://localhost:4200/menu1?menuId=${this.selectedMenuId}`;
-
+      this.iFrameUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+        `http://localhost:4200/main-menu?menuId=${this.selectedMenuId}`
+      );
       console.log("iFrameUrl", this.iFrameUrl);
     }
     console.log("selectedMenu", this.selectedMenu);
@@ -198,5 +204,12 @@ export class MenuManagerComponent {
           },
         });
     }
+  }
+
+  generateQrCode(): void {
+    const data = "https://example.com";
+    this.qrCodeService.generateQrCode("test").subscribe((response: any) => {
+      this.qrCodeImage = response.qr_code; // Adjust the response based on QRCode Monkey's API response format
+    });
   }
 }

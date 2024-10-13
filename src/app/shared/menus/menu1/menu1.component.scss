@@ -50,7 +50,45 @@
   margin-top: 20px;
 }
 
-.mat-card-subtitle {
+.mat-mdc-card-subtitle {
   font-size: 14px;
   color: #666;
+}
+
+::ng-deep .mdc-tab__text-label{
+  color: black !important;  /* Make the tab labels black */
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+
+::ng-deep .mat-mdc-tab-header-pagination{
+  color: black !important;  /* Make the tab labels black */
+}
+
+.restaurant-name{
+  font-size: 90px;
+  font-weight: bolder;
+}
+
+.restaurant-tagline{
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+
+
+::ng-deep .mat-mdc-card-title{
+  font-size: 35px !important;
+  font-weight: bolder !important;
+}
+
+::ng-deep .mat-mdc-card-subtitle{
+  font-size: 35px !important;
+  font-weight: bolder !important;
+}
+
+.menu-item-price{
+  font-size: 35px !important;
+  font-weight: bolder !important;
 }

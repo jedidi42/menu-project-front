@@ -7,6 +7,7 @@ import {
   Output,
 } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
+import { UploadService } from "../../services/upload.service";
 
 @Component({
   selector: "app-manage-menu-items",
@@ -22,7 +23,10 @@ export class ManageMenuItemsComponent {
   // New category name input
   newCategoryName: string = "";
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private uploadService: UploadService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   @Output() finalObjectSubmitted = new EventEmitter<any[]>();
 
@@ -74,6 +78,7 @@ export class ManageMenuItemsComponent {
       const newCategory = {
         name: this.newCategoryName,
         items: [], // Initially no items
+        imageUrl: "", // Initially no image
       };
 
       const categories = this.categoriesSubject.getValue();
@@ -83,6 +88,39 @@ export class ManageMenuItemsComponent {
     } else {
       console.log("Category name is empty");
     }
+  }
+
+  // Handle file selection and upload for category image
+  onCategoryFileSelected(event: any, category: any): void {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      this.uploadService.uploadImage(selectedFile).subscribe({
+        next: (response: any) => {
+          this.updateCategoryImageUrl(category, response.imageUrl);
+          console.log("Category Image URL:", response.imageUrl);
+          this.cdr.detectChanges(); // Ensure the view is updated
+        },
+        error: (error: any) => {
+          console.error("Error uploading image:", error);
+        },
+      });
+    } else {
+      console.error("No file selected");
+    }
+  }
+
+  // Update the imageUrl for the specific category
+  updateCategoryImageUrl(category: any, imageUrl: string) {
+    const categories = this.categoriesSubject.getValue();
+    const updatedCategories = categories.map((cat) => {
+      if (cat === category) {
+        console.log("Updating image for category:", cat);
+        return { ...cat, imageUrl };
+      }
+      return cat;
+    });
+    console.log("Updated categories:", updatedCategories);
+    this.categoriesSubject.next(updatedCategories);
   }
 
   // Submit the final object structure (can be sent to the backend)

@@ -1,0 +1,24 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1 class="menu-title">{{ menu?.name | titlecase }} Drinks Menu</h1>
+    </div>
+  </div>
+
+  <!-- Loop through categories in menuData -->
+  <div *ngFor="let category of menuData?.categories" class="row mt-4">
+    <div class="col-12">
+      <h4 class="category-title text-uppercase">{{ category.name }}</h4>
+      <hr />
+      <!-- Loop through items in each category -->
+      <div *ngFor="let item of category.items" class="row mb-2">
+        <div class="col-8">
+          <p class="menu-item-name mb-0">{{ item.name }}</p>
+        </div>
+        <div class="col-4 text-end">
+          <p class="menu-item-price mb-0">{{ item.price }}$</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

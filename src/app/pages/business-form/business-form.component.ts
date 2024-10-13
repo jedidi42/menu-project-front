@@ -58,6 +58,7 @@ export class BusinessFormComponent implements OnInit {
           businessAddress: business.address,
           businessCategory: business.categoryID,
         });
+        this.imagePreview = business.imagePath;
         // Handle image preview if needed
       },
       error: (error) => {

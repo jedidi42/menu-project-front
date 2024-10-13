@@ -7,6 +7,8 @@ import { BusinessFormComponent } from "./pages/business-form/business-form.compo
 import { BusinessManagerComponent } from "./pages/business-manager/business-manager.component";
 import { MenuManagerComponent } from "./pages/menu-manager/menu-manager.component";
 import { Menu1Component } from "./shared/menus/menu1/menu1.component";
+import { MainMenuComponent } from "./shared/menus/main-menu/main-menu.component";
+import { Menu2Component } from "./shared/menus/menu2/menu2.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -23,6 +25,8 @@ const routes: Routes = [
     ],
   },
   { path: "menu1", component: Menu1Component },
+  { path: "menu2", component: Menu2Component },
+  { path: "main-menu", component: MainMenuComponent },
   { path: "**", redirectTo: "business-manager" }, // Catch-all route for invalid URLs
 ];
 

@@ -4,11 +4,11 @@ import { MenuService } from "../../../services/menu.service";
 import { FONT_DICTIONARY } from "../../constants/font-dictionary";
 
 @Component({
-  selector: "app-menu1",
-  templateUrl: "./menu1.component.html",
-  styleUrl: "./menu1.component.scss",
+  selector: "app-menu2",
+  templateUrl: "./menu2.component.html",
+  styleUrls: ["./menu2.component.scss"], // Corrected property name
 })
-export class Menu1Component implements OnInit {
+export class Menu2Component implements OnInit {
   menuData: any;
 
   menu: any;

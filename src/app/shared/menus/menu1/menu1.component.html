@@ -1,40 +1,37 @@
-<div class="menu-container">
-  <!-- Header Section -->
-  <div class="menu-header text-center">
+<!-- Header Section -->
+<div class="menu-header text-center">
+  <!-- <img
+    src="https://www.shutterstock.com/shutterstock/photos/2225874903/display_1500/stock-vector-party-poster-design-drinks-cocktails-beer-set-of-vector-illustrations-typography-vintage-2225874903.jpg"
+    alt="Drinks header"
+    class="menu-header-image img-fluid"
+  />-->
+  <h1 class="restaurant-name mt-3">{{ menu.name }}</h1>
+  <p class="restaurant-tagline">Restaurant - Bar - Cocktail Bar</p>
+</div>
+
+<!-- Material Tabs for Category Selection -->
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab *ngFor="let category of menuData.categories" [label]="category.name">
     <img
-      src="https://www.shutterstock.com/shutterstock/photos/2225874903/display_1500/stock-vector-party-poster-design-drinks-cocktails-beer-set-of-vector-illustrations-typography-vintage-2225874903.jpg"
+      [src]="category.imageUrl"
       alt="Drinks header"
       class="menu-header-image img-fluid"
     />
-    <h1 class="restaurant-name mt-3">The Yummy Place</h1>
-    <p class="restaurant-tagline">Restaurant - Bar - Cocktail Bar</p>
-  </div>
-
-  <!-- Material Tabs for Category Selection -->
-  <mat-tab-group mat-stretch-tabs>
-    <mat-tab
-      *ngFor="let category of menuData.categories"
-      [label]="category.name"
-    >
-      <img
-        src="https://www.shutterstock.com/shutterstock/photos/2225874903/display_1500/stock-vector-party-poster-design-drinks-cocktails-beer-set-of-vector-illustrations-typography-vintage-2225874903.jpg"
-        alt="Drinks header"
-        class="menu-header-image img-fluid"
-      />
-      <div class="menu-category">
-        <div class="menu-items">
-          <!-- Material Card for Each Item -->
-          <mat-card *ngFor="let item of category.items" class="menu-item-card">
-            <mat-card-header class="item-header">
-              <mat-card-title>{{ item.name }}</mat-card-title>
-              <span class="menu-item-price"
-                >€ {{ item.price | number : "1.2-2" }}</span
-              >
-            </mat-card-header>
-            <mat-card-subtitle>{{ item.description }}</mat-card-subtitle>
-          </mat-card>
-        </div>
+    <div class="menu-category">
+      <div class="menu-items">
+        <!-- Material Card for Each Item -->
+        <mat-card *ngFor="let item of category.items" class="menu-item-card">
+          <mat-card-header class="item-header">
+            <mat-card-title>{{ item.name }}</mat-card-title>
+            <span class="menu-item-price"
+              >€ {{ item.price | number : "1.2-2" }}</span
+            >
+          </mat-card-header>
+          <mat-card-subtitle class="p-2">{{
+            item.description
+          }}</mat-card-subtitle>
+        </mat-card>
       </div>
-    </mat-tab>
-  </mat-tab-group>
-</div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
