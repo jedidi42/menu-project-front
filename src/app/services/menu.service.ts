@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class MenuService {
-  private apiUrl = "http://localhost:3000/api/menus"; // Adjust the URL as needed
+  private apiUrl = "https://menu-project-back.onrender.com/api/menus"; // Adjust the URL as needed
 
   constructor(private http: HttpClient) {}
 
@@ -35,7 +35,7 @@ export class MenuService {
 
   updateMenuContent(menuId: number, menu: any): Observable<any> {
     return this.http.put<any>(
-      `http://localhost:3000/api/nosql/menus/${menuId}`,
+      `https://menu-project-back.onrender.com/api/nosql/menus/${menuId}`,
       menu
     );
   }

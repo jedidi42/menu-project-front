@@ -43,7 +43,7 @@ import { Menu1Component } from "./shared/menus/menu1/menu1.component";
 import { PanelModule } from "primeng/panel";
 import { ChipsModule } from "primeng/chips";
 import { ManageMenuItemsComponent } from "./pages/manage-menu-items/manage-menu-items.component";
-import { Menu2Component } from './shared/menus/menu2/menu2.component';
+import { Menu2Component } from "./shared/menus/menu2/menu2.component";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -70,8 +70,10 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        allowedDomains: ["localhost:3000"], // Adjust as needed
-        disallowedRoutes: ["http://localhost:3000/api/auth/login"],
+        allowedDomains: ["https://menu-project-back.onrender.com"], // Adjust as needed
+        disallowedRoutes: [
+          "https://menu-project-back.onrender.com/api/auth/login",
+        ],
       },
     }),
     ReactiveFormsModule,

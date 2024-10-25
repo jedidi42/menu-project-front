@@ -20,16 +20,22 @@ export class MenuManagerComponent {
   ];
 
   fonts = [
-    { label: "Arial", value: "1" },
-    { label: "Roboto", value: "2" },
-    { label: "Sans-serif", value: "3" },
-    { label: "'Qwitcher Grypen', cursive", value: "4" },
+    { label: "Roboto", value: "1" },
+    { label: "Open Sans", value: "2" },
+    { label: "Lato", value: "3" },
+    { label: "Poppins", value: "4" },
+    { label: "Montserrat", value: "5" },
+    { label: "Nunito", value: "6" },
+    { label: "Raleway", value: "7" },
+    { label: "Inter", value: "8" },
+    { label: "Source Sans Pro", value: "9" },
+    { label: "Dancing Script", value: "10" }, // Cursive option
   ];
 
   templates = [
-    { label: "Classic", value: "classic" },
-    { label: "Modern", value: "modern" },
-    { label: "Elegant", value: "elegant" },
+    { label: "Classic", value: 1 },
+    { label: "Modern", value: 2 },
+    { label: "Elegant", value: 3 },
   ];
   selectedMenuId: number | null = null;
   selectedMenu: any;
@@ -50,6 +56,7 @@ export class MenuManagerComponent {
       name: ["", Validators.required],
       // category: [null, Validators.required],
       font: [null, Validators.required],
+      template: [null, Validators.required],
       //  template: [null, Validators.required],
       primaryColor: ["#ffffff", Validators.required],
       accentColor: ["#ff0000", Validators.required],
@@ -88,6 +95,7 @@ export class MenuManagerComponent {
         updatedMenu.Brands[0].primaryColor = this.menuForm.value.primaryColor;
         updatedMenu.Brands[0].secondaryColor = this.menuForm.value.accentColor;
         updatedMenu.Brands[0].font = this.menuForm.value.font.value;
+        updatedMenu.Brands[0].templateId = this.menuForm.value.template.value;
         updatedMenu.content = this.selectedMenu.content;
         this.menuService
           .updateMenu(this.selectedMenuId, updatedMenu)
@@ -146,6 +154,9 @@ export class MenuManagerComponent {
         name: this.selectedMenu.name,
         font: this.fonts.find(
           (f) => f.value === this.selectedMenu.Brands[0].font
+        ),
+        template: this.templates.find(
+          (f) => f.value === this.selectedMenu.Brands[0].templateId
         ),
         primaryColor: this.selectedMenu.Brands[0].primaryColor,
         accentColor: this.selectedMenu.Brands[0].secondaryColor,

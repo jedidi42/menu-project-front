@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class UploadService {
-  private uploadUrl = "http://localhost:3000/api/upload"; // Replace with your backend URL
+  private uploadUrl = "https://menu-project-back.onrender.com/api/upload"; // Replace with your backend URL
 
   constructor(private http: HttpClient) {}
 

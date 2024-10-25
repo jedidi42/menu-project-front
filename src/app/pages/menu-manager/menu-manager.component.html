@@ -128,6 +128,27 @@
           </p-panel>
 
           <p-panel header="Custom" [toggleable]="true">
+            <!-- template Dropdown -->
+            <div class="form-group mb-3">
+              <label for="font" class="form-label">Template</label>
+              <p-dropdown
+                [options]="templates"
+                formControlName="template"
+                placeholder="Select template"
+                optionLabel="label"
+                class="form-control"
+              ></p-dropdown>
+              <div
+                *ngIf="
+                  menuForm.get('template')?.invalid &&
+                  menuForm.get('template')?.touched
+                "
+                class="text-danger mt-1"
+              >
+                Font is required
+              </div>
+            </div>
+
             <!-- Font Dropdown -->
             <div class="form-group mb-3">
               <label for="font" class="form-label">Font</label>
@@ -137,7 +158,13 @@
                 placeholder="Select Font"
                 optionLabel="label"
                 class="form-control"
-              ></p-dropdown>
+              >
+                <ng-template let-font pTemplate="item">
+                  <span [ngStyle]="{ 'font-family': font.label }">{{
+                    font.label
+                  }}</span>
+                </ng-template>
+              </p-dropdown>
               <div
                 *ngIf="
                   menuForm.get('font')?.invalid && menuForm.get('font')?.touched

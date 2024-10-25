@@ -1,13 +1,13 @@
 // src/app/services/user.service.ts
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/api/users'; // Adjust the URL as needed
+  private apiUrl = "https://menu-project-back.onrender.com/api/users"; // Adjust the URL as needed
 
   constructor(private http: HttpClient) {}
 
