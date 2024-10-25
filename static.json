@@ -1,5 +1,5 @@
 {
-    "root": "dist/menu-project-front",
+    "root": "dist/menu-project-front/browser",
     "clean_urls": false,
     "routes": {
       "/**": "index.html"
