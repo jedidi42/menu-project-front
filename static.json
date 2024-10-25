@@ -1,0 +1,7 @@
+{
+    "root": "dist/menu-project-front",
+    "clean_urls": false,
+    "routes": {
+      "/**": "index.html"
+    }
+  }
